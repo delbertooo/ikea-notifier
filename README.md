@@ -19,6 +19,7 @@ Set up a cron job with something like:
 docker run --rm \
     -v ikea-notifier-data:/data \
     -e 'SLUGS=hemnes-schuhschrank-2fach-weiss-20169559:voxtorp-schubladenfront-dunkelgrau-90454100:hemnes-kommode-mit-6-schubladen-weiss-20374277' \
+    -e IGNORE_FOR_SECONDS=3600 \
     -e MAIL_HOST=smtp.gmail.com \
     -e MAIL_PORT=587 \
     -e MAIL_USER=example@gmail.com \
@@ -27,3 +28,6 @@ docker run --rm \
     -e MAIL_TO=example1@gmail.com,example2@gmail.com \
     ikea-notifier
 ```
+
+The `IGNORE_FOR_SECONDS` of `3600` will ignore available items for 3600
+seconds (1 hour) without re-sending an email each time the tool runs.
